@@ -10,10 +10,8 @@ class Post extends Model
     use HasFactory;
 
     protected $table = "posts";
-    //caso alguem criou o id de forma não padrão, que é somente id
     protected $primaryKey = "id";
-    //supondo que alguem criou um id string
-    //protected $keyType = "string";
+    protected $keyType = "string";
     public $incrementing = true;
     public $timestamps = true;
 

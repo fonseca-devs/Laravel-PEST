@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::post('posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::resource('users', UsersController::class);
+

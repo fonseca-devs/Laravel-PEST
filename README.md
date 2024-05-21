@@ -10,17 +10,37 @@ O ORM Eloquent é um recurso de mapeamento objeto-relacional (ORM) incluído no 
 
 ## O que eu aprendi?
 
-1. Variavel e funções da Model, a mais interessante e vou levar nos meus projetos é o Morph
+1. Model:
+    Relembrei alguns conceitos de Model e aprendi algumas funções que seria muito util no dia a dia , mas eu não tinha conhecimento
 
-2. Operações CRUD, usando Eloquent facilita a buscar ,deletar etc , alem de aumentar a segurança (orderBy, groupBy, join)
 
-3. Relacionamentos
+    protected $table = "posts";
+    protected $primaryKey = "id";
+    protected $keyType = "string";
+    public $incrementing = true;
+    public $timestamps = true;
 
-4. Validação de Dados
+    const CREATED_AT = "data_criacao";
+    const UPDATED_AT = "data_atualizacao";
 
-5. Migrações
+    protected $dateFormat = "d/m/Y";
+    protected $connection = 'mysql';
+    protected $attributes = [
+        'title' => 'um comentário'
+    ];
+
+2. Busca de Registro com ORM , eu sempre utilizei o Where com get() e first() com validação caso não encontre, mas com o FindOrFail, vai otimizar minhas funçoes
+
+    $users = User::all();
+    $users = User::where('id' , 10)->get(); 
+    $users = User::where('id' , 10)->first(); 
+    $user = User::findOrFail(100);
+    $user = User::where('name', request('name'))->firstOrFail();
+    $user = User::firstWhere('name', request('name'));
 
 ## Conceitos adicionais
 
 1. Comecei a usar o DebugBar e o Telescope, eu já conhecia, mas não tinha o custume de usar
+
+2. utilizei o Tinker para rodar a factory de user
 
