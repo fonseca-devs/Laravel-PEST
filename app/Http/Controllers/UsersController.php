@@ -49,5 +49,19 @@ class UsersController extends Controller
         return $user;
     }
 
+    public function page(User $user){
+        //$users = User::paginate(10);
+        //{{ $users->links() }} na view
 
+        // outro exemplo
+        // $filter = request('filter');
+        // $pages = request('perPage', 10);
+        // $users = $user->where('name', 'LIKE', "%{$filter}%")
+        //     ->orWhere(function  ($query){
+        //         $query->whereIn('email', ['ykerluke@example.com', 'paula.bogisich@example.org']);
+        // })->paginate($pages);
+
+        //localhost:8000/paginacao?filter=o&page=2&perPage=30
+        return view('paginate', compact('users'));
+    }
 }

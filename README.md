@@ -78,6 +78,27 @@ Esses são alguns dos principais pontos que aprendi recentemente e que pretendo 
 ```
     select * from `users` where `name` like ? or (`name` <> ? and `email` LIKE ?)
 
+4. paginação
+
+Ao lidar com paginação de consulta, relembrei várias técnicas úteis que ajudam a paginar resultados de busca:  -> paginate com filtros e utilizando os paramentros da url
+
+```php
+   $users = User::paginate(10);
+        //{{ $users->links() }} na view
+```
+Podemos combinar filtros com a paginação
+```php
+    $filter = request('filter');
+        $pages = request('perPage', 10);
+        $users = $user->where('name', 'LIKE', "%{$filter}%")
+            ->orWhere(function  ($query){
+                $query->whereIn('email', ['ykerluke@example.com', 'paula.bogisich@example.org']);
+        })->paginate($pages);
+
+        // localhost:8000/paginacao?filter=o&page=2&perPage=30
+```
+   
+
 ## Conceitos adicionais
 
 1. Comecei a usar o DebugBar e o Telescope, eu já conhecia, mas não tinha o custume de usar

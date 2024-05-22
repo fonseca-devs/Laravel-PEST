@@ -22,4 +22,5 @@ Route::get('/', function () {
 Route::post('posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::resource('users', UsersController::class);
 Route::get('filtro', [UsersController::class, 'filtro']);
+Route::get('paginacao', [UsersController::class, 'page']);
 
