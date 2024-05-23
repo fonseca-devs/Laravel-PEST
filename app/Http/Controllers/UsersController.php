@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     public function index() {
-        // $users = User::get() // all();
+        $users = User::get(); // all();
         // $users = User::where('id' , 10)->get(); [colection]
         // $users = User::where('id' , 10)->first(); [objeto]
         // $users = User::findOrFail(100);
         // $users = User::where('name', request('name'))->firstOrFail();
-        $users = User::firstWhere('name', request('name'));
+        // $users = User::firstWhere('name', request('name'));
         return $users;
 
     }

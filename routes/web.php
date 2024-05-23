@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\MutatorsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,10 @@ Route::prefix('orm')->group(function() {
     Route::get('store', [UsersController::class, 'store']);
     Route::get('update', [UsersController::class, 'update']);
     Route::get('delete', [UsersController::class, 'delete']);
+    //
+
+    //mutators
+    Route::get('accessor', [MutatorsController::class, 'index']);
+
 });
 
