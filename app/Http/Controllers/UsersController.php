@@ -13,11 +13,12 @@ class UsersController extends Controller
         // $users = User::where('id' , 10)->first(); [objeto]
         // $users = User::findOrFail(100);
         // $users = User::where('name', request('name'))->firstOrFail();
-        // $users = User::firstWhere('name', request('name'));
+        $users = User::firstWhere('name', request('name'));
+        return $users;
 
     }
-
-    public function filtro(User $user){
+//eu poderia fazer um construct nesse $user para não ficar repetindo , mas como já esta em andamento deixei dessa forma
+    public function filter(User $user){
         $filter = "w";
         $email = "jared.oconnell@example.net";
 
@@ -38,12 +39,12 @@ class UsersController extends Controller
         //     return $user;
         // select * from `users` where `email` LIKE ? and `email` in (?, ?)
 
-        // $user = $user->where('name', 'like' , "%{$filter}%")
-        //     ->orWhere(function ($query) use ($filter){
-        //         $query->where('name', '<>', 'ursula');
-        //         $query->where('email', 'LIKE', "%{$filter}%");
-        //     })
-        //     ->toSql();
+        $user = $user->where('name', 'like' , "%{$filter}%")
+            ->orWhere(function ($query) use ($filter){
+                $query->where('name', '<>', 'ursula');
+                $query->where('email', 'LIKE', "%{$filter}%");
+            })
+            ->get();
 
         // select * from `users` where `name` like ? or (`name` <> ? and `email` LIKE ?)
         return $user;
@@ -54,14 +55,19 @@ class UsersController extends Controller
         //{{ $users->links() }} na view
 
         // outro exemplo
-        // $filter = request('filter');
-        // $pages = request('perPage', 10);
-        // $users = $user->where('name', 'LIKE', "%{$filter}%")
-        //     ->orWhere(function  ($query){
-        //         $query->whereIn('email', ['ykerluke@example.com', 'paula.bogisich@example.org']);
-        // })->paginate($pages);
+        $filter = request('filter');
+        $pages = request('perPage', 10);
+        $users = $user->where('name', 'LIKE', "%{$filter}%")
+            ->orWhere(function  ($query){
+                $query->whereIn('email', ['ykerluke@example.com', 'paula.bogisich@example.org']);
+        })->paginate($pages);
 
         //localhost:8000/paginacao?filter=o&page=2&perPage=30
         return view('paginate', compact('users'));
+    }
+
+    public function order(User $user) {
+        $users = $user->orderBy('name', 'ASC')->get();
+        return $users;
     }
 }

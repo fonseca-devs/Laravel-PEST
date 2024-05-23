@@ -18,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::post('posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
-Route::resource('users', UsersController::class);
-Route::get('filtro', [UsersController::class, 'filtro']);
-Route::get('paginacao', [UsersController::class, 'page']);
+Route::prefix('orm')->group(function() {
+    Route::post('posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::resource('users', UsersController::class);
+    Route::get('filter', [UsersController::class, 'filter']);
+    Route::get('page', [UsersController::class, 'page']);
+    Route::get('order', [UsersController::class, 'order']);
+});
 
