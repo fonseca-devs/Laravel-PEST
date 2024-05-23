@@ -22,4 +22,7 @@ class User extends Model
         'idade' => 'string'
     ];
 
+    public function setNameAttribute($value){
+        $this->attributes['name'] = strtoupper($value);
+    }
 }

@@ -20,4 +20,13 @@ class MutatorsController extends Controller
     public function casts() {
         return User::first();
     }
+
+    public function mutators() {
+
+       return User::create([
+        "name" => "bruno",
+        "email" => "bruno@gnul.com",
+        "idade" => 23
+       ]);
+    }
 }

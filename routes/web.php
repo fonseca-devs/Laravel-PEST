@@ -36,6 +36,7 @@ Route::prefix('orm')->group(function() {
     //mutators
     Route::get('accessor', [MutatorsController::class, 'index']);
     Route::get('casts', [MutatorsController::class, 'casts']);
+    Route::get('mutators', [MutatorsController::class, 'mutators']);
 
 });
 
