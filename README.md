@@ -48,22 +48,10 @@ Antes, eu costumava utilizar métodos como get() e first() em combinação com w
 
 Ao lidar com filtros de consulta, aprendi várias técnicas úteis que ajudam a refinar resultados de busca:  -> whereNot, whereIn, orWhere
 ```php
-    $user = $user->where('email', $email)->first();
-
-    $user = $user->where('email', 'LIKE', "%{$filter}%")->get();
-   
-
-    $user = $user->where('email', 'LIKE', "%{$filter}%")
-                    ->orwhere('name', 'Prof. Alanis Johns')
-                    ->toSQL();
-
-    //"select * from `users` where `email` LIKE ? or `name` = ?"
-
         $user = $user->where('email', 'LIKE', "%{$filter}%")
                     ->whereIn('email', ['', ''])
                     ->toSQL();
         return $user;
-    //select * from `users` where `email` LIKE ? and `email` in (?, ?)
 ```
 Ao combinar where(), orWhere(), e funções anônimas, é possível criar consultas altamente flexíveis para atender a uma variedade de cenários de filtragem.
 
@@ -95,7 +83,7 @@ Podemos combinar filtros com a paginação
                 $query->whereIn('email', ['ykerluke@example.com', 'paula.bogisich@example.org']);
         })->paginate($pages);
 
-        // localhost:8000/paginacao?filter=o&page=2&perPage=30
+
 ```
    
    4. Ordenação
@@ -124,11 +112,11 @@ Existe varias formas de salvar um dado no banco
             $comment->save();
 
 ```
-# Valores variaveis 
+Valores variaveis 
 ```php
  return $comments::create($request->all());
 ```
-# valores com relacionamento
+valores com relacionamento
 (esse é interessante)
 ```php
   $user = User::find(1);
@@ -139,7 +127,28 @@ Existe varias formas de salvar um dado no banco
 
         return Comment::get();
 ```
+ 4. update, se não exisitir cria , senão faz update
+```php
+ foreach ($request->ids as $id) {
+            User::destroy($id);
+        }
 
+        $user->destroy($request['id']);
+
+        return $user->get();
+```
+
+5. delete, com um desafio de deletar varios usuarios
+
+```php
+ foreach ($request->ids as $id) {
+            User::destroy($id);
+        }
+
+        $user->destroy($request['id']);
+
+        return $user->get();
+```
 ## Conceitos adicionais
 
 1. Comecei a usar o DebugBar e o Telescope, eu já conhecia, mas não tinha o custume de usar
