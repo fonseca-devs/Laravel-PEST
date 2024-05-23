@@ -24,5 +24,6 @@ Route::prefix('orm')->group(function() {
     Route::get('filter', [UsersController::class, 'filter']);
     Route::get('page', [UsersController::class, 'page']);
     Route::get('order', [UsersController::class, 'order']);
+    Route::get('store', [UsersController::class, 'store']);
 });
 

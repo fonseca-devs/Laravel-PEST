@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -52,7 +53,7 @@ class UsersController extends Controller
 
     public function page(User $user){
         //$users = User::paginate(10);
-        //{{ $users->links() }} na view
+        // {{ $users->links() }} na view
 
         // outro exemplo
         $filter = request('filter');
@@ -70,4 +71,38 @@ class UsersController extends Controller
         $users = $user->orderBy('name', 'ASC')->get();
         return $users;
     }
+
+    public function store(Request $request) {
+        //pra variar
+            // $comment = new Comment();
+            // $comment->user_id = 2;
+            // $comment->comments_type = "App\Models\Post";
+            // $comment->comments_id = 1;
+            // $comment->body = "teste lor";
+
+            // $comment->save();
+
+            // $users = Comment::get();
+
+            // return $users;
+
+        // create
+
+            // $comments = new Comment();
+
+            // $save = $comments::create($request->all());
+            // return $save;
+
+        // esse aqui é mt interessante
+
+        $user = User::find(1);
+        $user->comments()->create([
+            'body' => 'não conhecia essa função do ORM',
+            "user_id" => $user->id
+        ]);
+
+        return Comment::get();
+
+    }
+
 }
