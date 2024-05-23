@@ -29,5 +29,6 @@ Route::prefix('orm')->group(function() {
 
     Route::get('store', [UsersController::class, 'store']);
     Route::get('update', [UsersController::class, 'update']);
+    Route::get('delete', [UsersController::class, 'delete']);
 });
 

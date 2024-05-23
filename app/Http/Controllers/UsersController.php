@@ -120,4 +120,24 @@ class UsersController extends Controller
 
     }
 
+    public function delete(User $user, Request $request) {
+
+        // $user = $user->where('id', $request['id'])->first();
+
+        // if(!$user)
+        //     return "usuario não existe";
+
+        // $user->delete();
+
+        //destroy(com um desafio de deletar mais de um usuario)
+
+        foreach ($request->ids as $id) {
+            User::destroy($id);
+        }
+
+        $user->destroy($request['id']);
+
+        return $user->get();
+
+    }
 }
