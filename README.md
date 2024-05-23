@@ -159,6 +159,22 @@ Nesse exemplo, todos os dados do name vão ser maiusculos
 }
 ```
 
+7. casts -> altera a tipagem do dados
+
+```php
+   protected $casts = [
+        'idade' => 'string'
+    ];
+```
+
+8. mmutators -> ele altera o valor que vai ser salvo no banco 
+
+
+```php
+   public function setNameAttribute($value){
+        $this->attributes['name'] = strtoupper($value);
+    }
+```
 ## Conceitos adicionais
 
 1. Comecei a usar o DebugBar e o Telescope, eu já conhecia, mas não tinha o custume de usar
