@@ -98,6 +98,17 @@ Podemos combinar filtros com a paginação
         // localhost:8000/paginacao?filter=o&page=2&perPage=30
 ```
    
+   4. Ordenação
+
+Podemos ordenar os resutados por coluna sendo crescente ou decrescente
+
+```php
+   public function order(User $user) {
+        $users = $user->orderBy('name', 'ASC')->get();
+        return $users;
+    }
+```
+
 
 ## Conceitos adicionais
 
