@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MutatorsController;
+use App\Http\Controllers\ScopesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,10 @@ Route::prefix('orm')->group(function() {
     Route::get('accessor', [MutatorsController::class, 'index']);
     Route::get('casts', [MutatorsController::class, 'casts']);
     Route::get('mutators', [MutatorsController::class, 'mutators']);
+
+    //local scope
+    Route::get('localScope', [ScopesController::class, 'localScope']);
+
 
 });
 

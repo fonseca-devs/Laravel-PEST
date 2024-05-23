@@ -175,6 +175,25 @@ Nesse exemplo, todos os dados do name vão ser maiusculos
         $this->attributes['name'] = strtoupper($value);
     }
 ```
+
+9. localScope -> quando vc repete muito um filtro, como por exemplo filtro de data , total, 1 ano, 1 mes e semana.. utilizamos esse filtro muitas vezes 
+
+```php
+    public function localScope(){
+        // $user = User::LastDays()->get();
+        $user = User::between('2024-01-23', '2024-02-23')->get();
+        return $user;
+    }
+
+    //controller
+
+    
+    public function localScope(){
+        // $user = User::LastDays()->get();
+        $user = User::between('2024-01-23', '2024-02-23')->get();
+        return $user;
+    }
+```
 ## Conceitos adicionais
 
 1. Comecei a usar o DebugBar e o Telescope, eu já conhecia, mas não tinha o custume de usar
