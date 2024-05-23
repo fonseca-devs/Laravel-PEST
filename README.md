@@ -149,6 +149,16 @@ valores com relacionamento
 
         return $user->get();
 ```
+
+6. Accessor -> accessor manipula os dados do banco na Model, eu consigo criar traits para ser chamados na model
+
+Nesse exemplo, todos os dados do name vão ser maiusculos
+```php
+ public function getNameAttribute($value){
+    return strtoupper($value);
+}
+```
+
 ## Conceitos adicionais
 
 1. Comecei a usar o DebugBar e o Telescope, eu já conhecia, mas não tinha o custume de usar
