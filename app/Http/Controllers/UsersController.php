@@ -105,4 +105,19 @@ class UsersController extends Controller
 
     }
 
+    public function update(request $request) {
+        if(User::find($request['id']) == null)
+           return User::create($request->all());
+
+        $user = User::find($request['id']);
+        // $user->name = $request['name'];
+        // $user->save();
+
+        //com update
+
+        $user->update($request->all());
+        return $user;
+
+    }
+
 }

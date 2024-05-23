@@ -24,6 +24,10 @@ Route::prefix('orm')->group(function() {
     Route::get('filter', [UsersController::class, 'filter']);
     Route::get('page', [UsersController::class, 'page']);
     Route::get('order', [UsersController::class, 'order']);
+    //rota era pra ser post, put ou patch .. mas como é teste vou deixar get
+    //o resource já cria as rotas , mas eu quis criar manual
+
     Route::get('store', [UsersController::class, 'store']);
+    Route::get('update', [UsersController::class, 'update']);
 });
 
