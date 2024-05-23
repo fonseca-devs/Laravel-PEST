@@ -98,6 +98,47 @@ Podemos combinar filtros com a paginação
         // localhost:8000/paginacao?filter=o&page=2&perPage=30
 ```
    
+   4. Ordenação
+
+Podemos ordenar os resutados por coluna sendo crescente ou decrescente
+
+```php
+   public function order(User $user) {
+        $users = $user->orderBy('name', 'ASC')->get();
+        return $users;
+    }
+```
+
+ 4. Create
+
+Existe varias formas de salvar um dado no banco
+# Valores Fixos
+```php
+
+  $comment = new Comment();
+            $comment->user_id = 2;
+            $comment->comments_type = "App\Models\Post";
+            $comment->comments_id = 1;
+            $comment->body = "teste lor";
+
+            $comment->save();
+
+```
+# Valores variaveis 
+```php
+ return $comments::create($request->all());
+```
+# valores com relacionamento
+(esse é interessante)
+```php
+  $user = User::find(1);
+        $user->comments()->create([
+            'body' => 'não conhecia essa função do ORM',
+            "user_id" => $user->id
+        ]);
+
+        return Comment::get();
+```
 
 ## Conceitos adicionais
 
