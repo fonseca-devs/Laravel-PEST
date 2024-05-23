@@ -16,4 +16,8 @@ class MutatorsController extends Controller
 
         return $user->name_and_email;
     }
+
+    public function casts() {
+        return User::first();
+    }
 }
