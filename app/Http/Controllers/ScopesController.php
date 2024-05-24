@@ -17,7 +17,7 @@ class ScopesController extends Controller
     }
 
     public function globalScope(){
-        return User::get();
+        return User::withoutGlobalScope('year')->get();
     }
 
 
