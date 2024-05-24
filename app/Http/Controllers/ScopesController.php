@@ -22,5 +22,13 @@ class ScopesController extends Controller
         return User::withoutGlobalScope(createAtScope::class)->get();
     }
 
+    public function observer(User $user) {
+        $user = $user::create([
+            "name" => "bruno",
+            "email" => "k@gmail.com"
+        ]);
+        return $user;
+    }
+
 
 }
