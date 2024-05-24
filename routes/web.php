@@ -42,6 +42,7 @@ Route::prefix('orm')->group(function() {
     //local scope
     Route::get('localScope', [ScopesController::class, 'localScope']);
 
+    Route::get('globalScope', [ScopesController::class, 'globalScope']);
 
 });
 

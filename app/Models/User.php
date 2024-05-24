@@ -4,9 +4,11 @@ namespace App\Models;
 
 use App\Traits\DefaultTraits;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Model
 {
@@ -38,4 +40,11 @@ class User extends Model
         ->whereDate('created_at', '<=' , now()->subDays(1));
 
     }
-}
+
+    protected static function booted()
+    {
+        static::addGlobalScope('year', function (Builder $builder) {
+            $builder->whereYear('created_at', now()->subDays(1));
+        });
+    }
+    }

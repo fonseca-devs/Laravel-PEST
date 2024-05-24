@@ -16,5 +16,9 @@ class ScopesController extends Controller
         return $user;
     }
 
+    public function globalScope(){
+        return User::get();
+    }
+
 
 }
