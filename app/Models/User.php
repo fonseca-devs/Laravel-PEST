@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\scopes\createAtScope;
 use App\Traits\DefaultTraits;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -43,8 +44,10 @@ class User extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope('year', function (Builder $builder) {
-            $builder->whereYear('created_at', now()->subDays(1));
-        });
+        // static::addGlobalScope('year', function (Builder $builder) {
+        //     $builder->whereYear('created_at', now()->subDays(1));
+        // });
+
+        static::addGlobalScope(new createAtScope);
     }
     }

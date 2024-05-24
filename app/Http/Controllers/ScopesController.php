@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
+use App\scopes\createAtScope;
 use Illuminate\Http\Request;
 
 class ScopesController extends Controller
@@ -17,7 +18,8 @@ class ScopesController extends Controller
     }
 
     public function globalScope(){
-        return User::withoutGlobalScope('year')->get();
+        // return User::withoutGlobalScope('year')->get();
+        return User::withoutGlobalScope(createAtScope::class)->get();
     }
 
 
