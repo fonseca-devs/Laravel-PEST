@@ -4,34 +4,32 @@ namespace Tests\Unit\App\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 use App\Traits\DefaultTraits;
-use PHPUnit\Framework\TestCase;
 
-class UserTest extends TestCase
+class UserTest extends ModelTestCase
 {
     protected function model(): Model
     {
         return new User();
     }
 
-   //teste da traits do User
-    public function teste_traits(): void
+    protected function traits(): array
     {
-        //verifica quais traits estão sendo utilizadas (fullPath)
-        $traitsFullPath = class_uses($this->model());
-
-        //verifica quais traits estão sendo utilizando (keys)
-
-        $traits = array_keys(class_uses($this->model()));
-
-        $expectedTraits = [
+        return [
             HasFactory::class,
             SoftDeletes::class,
             DefaultTraits::class
         ];
+    }
 
-        $this->assertEquals($expectedTraits, $traits);
+    protected function cast():array
+    {
+        return [
+            'idade' => 'string',
+            'id' => 'int',
+            'deleted_at' => 'datetime'
+        ];
     }
 }
