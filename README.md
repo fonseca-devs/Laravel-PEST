@@ -2,4 +2,8 @@
 
 Commands:
 
-1. assert
+1. assertTrue (verificar se é true)
+
+Tips?
+
+1. utilizar o RefreshDatabase
