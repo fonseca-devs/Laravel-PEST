@@ -33,4 +33,21 @@ class UserRepositoryTest extends TestCase
 
         $this->assertIsArray($response);
     }
+
+    public function teste_create()
+    {
+        $data = [
+            "name" => "Bruno Oliveira",
+            "idade" => 23,
+            "email" => "brunobromo321@gmail.com"
+        ];
+
+        $response = $this->repository->create($data);
+
+        $this->assertNotNull($response);
+        $this->assertIsObject($response);
+        $this->assertDatabaseHas('users', [
+            'email' => 'brunobromo321@gmail.com',
+        ]);
+    }
 }
