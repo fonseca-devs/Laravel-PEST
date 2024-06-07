@@ -9,22 +9,27 @@ use Tests\TestCase;
 
 class UserRepositoryTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
+    protected UserRepository $repository;
+
+    public function setUp() :void {
+
+        $this->repository = new UserRepository(new User());
+
+        parent::setUp();
+    }
+
     public function teste_implements_interface()
     {
         $this->assertInstanceOf(
             UserRepositoryInterface::class,
-            new UserRepository(new User())
+            $this->repository
         );
     }
 
     public function test_find_all_empty(): void
     {
 
-        $repository = new UserRepository(new User());
-        $response = $repository->findAll();
+        $response = $this->repository->findAll();
 
         $this->assertIsArray($response);
     }
