@@ -111,4 +111,24 @@ class UserRepositoryTest extends TestCase
         // }
 
     }
+
+    public function teste_find()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->repository->findByEmail($user->email);
+
+        $this->assertIsObject($response);
+
+    }
+
+    public function teste_find_exception()
+    {
+
+        $find = $this->repository->findByEmail('fake_email');
+
+        $this->assertNull($find);
+
+    }
+
 }
