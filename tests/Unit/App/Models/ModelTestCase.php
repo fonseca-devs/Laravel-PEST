@@ -8,8 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 use function PHPUnit\Framework\assertEquals;
 
-abstract class ModelTestCase extends TestCase{
-
+abstract class ModelTestCase extends TestCase {
 
     abstract protected function model(): Model;
     abstract protected function traits(): array;
