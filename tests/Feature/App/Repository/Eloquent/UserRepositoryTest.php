@@ -5,6 +5,7 @@ namespace Tests\Feature\App\Repository\Eloquent;
 use App\Repository\Contracts\UserRepositoryInterface;
 use App\Models\User;
 use App\Repository\Eloquent\UserRepository;
+use App\Repository\Exceptions\NotFoundException;
 use Illuminate\Database\QueryException;
 use Tests\TestCase;
 
@@ -93,6 +94,21 @@ class UserRepositoryTest extends TestCase
         $this->assertSoftDeleted('users', [
             'email' => $user->email
         ]);
+
+    }
+
+    public function teste_delete_exception(){
+
+        $this->expectException(NotFoundException::class);
+        $this->repository->delete("fake_email");
+
+        // try{
+        //     $this->repository->delete('fake_email');
+
+        //     $this->assertTrue(false);
+        // }catch(\Throwable $th){
+        //     $this->assertInstanceOf(NotFoundException::class, $th);
+        // }
 
     }
 }
