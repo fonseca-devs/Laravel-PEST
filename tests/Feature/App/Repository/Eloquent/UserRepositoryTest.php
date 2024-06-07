@@ -82,4 +82,17 @@ class UserRepositoryTest extends TestCase
         ]);
 
     }
+
+    public function teste_delete()
+    {
+        $user = User::factory()->create();
+
+        $deleted = $this->repository->delete($user->email);
+        dump($deleted);
+        $this->assertTrue($deleted);
+        $this->assertSoftDeleted('users', [
+            'email' => $user->email
+        ]);
+
+    }
 }

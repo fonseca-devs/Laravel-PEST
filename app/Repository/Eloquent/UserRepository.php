@@ -35,4 +35,13 @@ class UserRepository implements UserRepositoryInterface
 
         return $user;
     }
+
+    public function delete(string $email): bool
+    {
+        $user = $this->model->where('email', $email)->first();
+
+        return $user->delete();
+
+
+    }
 }
